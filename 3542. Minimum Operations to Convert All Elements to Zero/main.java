@@ -1,0 +1,22 @@
+// 3542. Minimum Operations to Convert All Elements to Zero
+// https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/
+
+public class main {
+    public int minOperations(int[] nums) {
+        int n = nums.length;
+        int[] stack = new int[n + 1];
+        int top = 0, ans = 0;
+
+        for (int num : nums) {
+            while (stack[top] > num) {
+                top--;
+                ans++;
+            }
+            if (stack[top] != num) {
+                top++;
+                stack[top] = num;
+            }
+        }
+        return ans + top;
+    }
+}
